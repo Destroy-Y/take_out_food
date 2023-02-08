@@ -48,6 +48,9 @@ public class OrderController {
     @PostMapping("/submit")
     public R<String> submit(@RequestBody Orders orders) {
         log.info("订单数据：{}", orders);
+
+        log.info("orderService:{}",orderService);
+
         orderService.submit(orders);
 
         return R.success("下单成功");
@@ -117,6 +120,12 @@ public class OrderController {
 //        return R.success(pageInfo);
 //    }
 
+    /**
+     * 客户端 个人主页 最近订单
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/userPage")
     public R<Page> page(int page, int pageSize) {
         //获取当前id

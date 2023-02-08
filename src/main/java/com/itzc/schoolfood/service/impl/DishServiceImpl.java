@@ -1,14 +1,13 @@
 package com.itzc.schoolfood.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itzc.schoolfood.common.CustomException;
 import com.itzc.schoolfood.dto.DishDto;
-import com.itzc.schoolfood.entity.*;
-import com.itzc.schoolfood.mapper.CategoryMapper;
+import com.itzc.schoolfood.entity.Dish;
+import com.itzc.schoolfood.entity.DishFlavor;
+import com.itzc.schoolfood.entity.SetmealDish;
 import com.itzc.schoolfood.mapper.DishMapper;
-import com.itzc.schoolfood.service.CategoryService;
 import com.itzc.schoolfood.service.DishFlavorService;
 import com.itzc.schoolfood.service.DishService;
 import com.itzc.schoolfood.service.SetmealDishService;
@@ -19,9 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 

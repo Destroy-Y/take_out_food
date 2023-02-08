@@ -13,6 +13,7 @@
     <artifactId>take_out_food</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>

@@ -21,3 +21,4 @@ mybatis-plus:
 reggie:
   #上传的图片保存的位置
   path: D:\JAVA_PROJECT\TakeOut_Food\img\
+#  path: /usr/local/app/imgs

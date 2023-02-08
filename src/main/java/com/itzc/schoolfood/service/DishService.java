@@ -2,7 +2,6 @@ package com.itzc.schoolfood.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.itzc.schoolfood.dto.DishDto;
-import com.itzc.schoolfood.entity.Category;
 import com.itzc.schoolfood.entity.Dish;
 
 public interface DishService extends IService<Dish> {

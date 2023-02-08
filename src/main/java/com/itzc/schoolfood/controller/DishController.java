@@ -9,10 +9,12 @@ import com.itzc.schoolfood.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
+@Component
 @RequestMapping("/dish")
 public class DishController {
 
@@ -47,7 +50,7 @@ public class DishController {
      * @return
      */
     @PostMapping
-    private R<String> save(@RequestBody DishDto dishDto) {
+    public R<String> save(@RequestBody DishDto dishDto) {
         log.info(String.valueOf(dishDto));
 
         dishService.saveWithFlavor(dishDto);
@@ -122,9 +125,9 @@ public class DishController {
      * @return
      */
     @PutMapping
-    private R<String> update(@RequestBody DishDto dishDto) {
+    public R<String> update(@RequestBody DishDto dishDto) {
         log.info(String.valueOf(dishDto));
-
+        log.info("dishService:{}",dishService);
         dishService.updateWithFlavor(dishDto);
 
         return R.success("修改菜品成功");
