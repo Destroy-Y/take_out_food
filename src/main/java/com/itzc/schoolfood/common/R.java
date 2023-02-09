@@ -1,6 +1,8 @@
 package com.itzc.schoolfood.common;
 
 import lombok.Data;
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +12,7 @@ import java.util.Map;
  */
 
 @Data
-public class R<T> {
+public class R<T> implements Serializable { //Serializable : 将R序列化，否则序列化存入Redis时会报错
 
     private Integer code; //编码：1成功，0和其它数字为失败
 
