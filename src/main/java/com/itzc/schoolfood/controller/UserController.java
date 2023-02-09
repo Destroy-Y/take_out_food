@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.itzc.schoolfood.common.R;
 import com.itzc.schoolfood.entity.User;
 import com.itzc.schoolfood.service.UserService;
+import com.itzc.schoolfood.utils.MailUtils;
 import com.itzc.schoolfood.utils.SMSUtils;
 import com.itzc.schoolfood.utils.ValidateCodeUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -31,14 +33,14 @@ public class UserController {
     private UserService userService;
 
     /**
-     * 发送手机短信
+     * 发送邮箱短信
      * @param user
      * @param session
      * @return
      */
     @PostMapping("/sendMsg")
-    public R<String> sendMsg(@RequestBody User user,HttpSession session){
-        //获取手机号
+    public R<String> sendMsg(@RequestBody User user,HttpSession session) throws MessagingException {
+        //获取邮箱号
         String phone = user.getPhone();
 
         if (StringUtils.isNotEmpty(phone)){
@@ -48,14 +50,16 @@ public class UserController {
 
             //调用阿里云提供的短信服务API完成发送短信
 //            SMSUtils.sendMessage();   //调用方法
+            //这里的phone其实就是邮箱，code是我们生成的验证码
+            MailUtils.sendTestMail(phone, code);
 
             //需要将生成的验证码保存到Session
             session.setAttribute(phone,code);
 
-            return R.success("手机验证码短信发送成功");
+            return R.success("验证码发送成功");
         }
 
-        return R.error("短信发送失败");
+        return R.error("验证码发送失败");
     }
 
     /**
@@ -85,6 +89,7 @@ public class UserController {
                 user = new User();
                 user.setPhone(phone);
                 user.setStatus(1);
+                user.setName("用户"+codeInSession);
                 userService.save(user);
             }
             session.setAttribute("user",user.getId());
