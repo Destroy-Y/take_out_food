@@ -53,6 +53,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper,Orders> implements
 
         //查询用户数据
         User user = userService.getById(userId);
+        user.setName("用户："+user.getPhone());
 
         //查询地址
         Long addressBookId = orders.getAddressBookId();
